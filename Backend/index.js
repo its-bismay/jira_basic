@@ -20,6 +20,8 @@ app.get("/", (req,res) => {
 app.use(bodyParser.json());
 app.use(cors({
   origin: "*",
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
 app.use('/auth', authRouter)
