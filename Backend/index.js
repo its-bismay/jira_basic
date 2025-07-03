@@ -18,7 +18,9 @@ app.get("/", (req,res) => {
 })
 
 app.use(bodyParser.json());
-app.use(cors())
+app.use(cors({
+  origin: "*",
+}));
 
 app.use('/auth', authRouter)
 app.use('/api', taskRouter)
