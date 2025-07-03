@@ -37,7 +37,7 @@ const Signup = () => {
           onSubmit={async (values, { setSubmitting, resetForm }) => {
             try {
               const res = await axios.post(
-                "http://localhost:8080/auth/signup",
+                "https://tasky-backend-4aqd.onrender.com/auth/signup",
                 values
               );
               if (res.data.success) {

@@ -36,7 +36,7 @@ const Login = () => {
             setServerError("");
             try {
               const res = await axios.post(
-                "http://localhost:8080/auth/login",
+                "https://tasky-backend-4aqd.onrender.com/auth/login",
                 values
               );
               if (res.data.success) {

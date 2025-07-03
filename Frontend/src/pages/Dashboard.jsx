@@ -30,8 +30,8 @@ const Dashboard = () => {
     setTasksLoading(true);
     const endpoint =
       tab === "assignedToMe"
-        ? "http://localhost:8080/api/assigned-to-me"
-        : "http://localhost:8080/api/assigned-by-me";
+        ? "https://tasky-backend-4aqd.onrender.com/api/assigned-to-me"
+        : "https://tasky-backend-4aqd.onrender.com/api/assigned-by-me";
 
     axios
       .get(endpoint, {
@@ -63,7 +63,7 @@ const Dashboard = () => {
     if (!showTaskModal || !token) return;
     setUsersLoading(true);
     axios
-      .get("http://localhost:8080/api/users", {
+      .get("https://tasky-backend-4aqd.onrender.com/api/users", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
@@ -91,7 +91,7 @@ const Dashboard = () => {
   const handleAddTask = async (values) => {
     try {
       const res = await axios.post(
-        "http://localhost:8080/api/create/task",
+        "https://tasky-backend-4aqd.onrender.com/api/create/task",
         {
           title: values.title,
           description: values.description,
@@ -120,7 +120,7 @@ const Dashboard = () => {
   const handleStatusUpdate = async (taskId, newStatus) => {
     try {
       const res = await axios.patch(
-        `http://localhost:8080/api/${taskId}/status`,
+        `https://tasky-backend-4aqd.onrender.com/api/${taskId}/status`,
         { status: newStatus },
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -154,7 +154,7 @@ const Dashboard = () => {
   const handleUpdateTask = async (values) => {
     try {
       const res = await axios.put(
-        `http://localhost:8080/api/${editingTask._id}`,
+        `https://tasky-backend-4aqd.onrender.com/api/${editingTask._id}`,
         {
           title: values.title,
           description: values.description,
@@ -190,9 +190,12 @@ const Dashboard = () => {
     if (!window.confirm("Are you sure you want to delete this task?")) return;
 
     try {
-      const res = await axios.delete(`http://localhost:8080/api/${taskId}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const res = await axios.delete(
+        `https://tasky-backend-4aqd.onrender.com/api/${taskId}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       if (res.data.success) {
         toast.success("Task deleted successfully!");
         // Remove from local state
